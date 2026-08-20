@@ -8,7 +8,7 @@
 
 ## 在线公开演示
 
-- 地址：<https://songtaoluo007-maker.github.io/yujian-flood-intelligence/>
+- 地址：<https://anson-yuz.github.io/yujian-flood-intelligence/>
 - 直接点击“进入访客演示”，无需账号密码。
 - GitHub Pages 版本仅部署静态前端，所有业务数据与处置动作均为浏览器内模拟，不连接后端、数据库、摄像头、LiDAR 或真实执行器。
 - 公开站点由 `gh-pages` 分支承载构建产物；后续源代码更新需重新构建并发布该分支。
