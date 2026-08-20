@@ -1,0 +1,99 @@
+name: yujian-platform-demo
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-yujian}
+      POSTGRES_USER: ${POSTGRES_USER:-yujian}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-yujian_demo_change_me}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+    restart: unless-stopped
+
+  backend:
+    image: python:3.12-slim
+    working_dir: /workspace/server
+    volumes:
+      - ./server:/workspace/server
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-yujian}:${POSTGRES_PASSWORD:-yujian_demo_change_me}@postgres:5432/${POSTGRES_DB:-yujian}
+      ENVIRONMENT: ${ENVIRONMENT:-demo}
+      SEED_DEMO_DATA: ${SEED_DEMO_DATA:-true}
+      SCENARIO_TICK_SECONDS: ${SCENARIO_TICK_SECONDS:-2}
+      EVENT_STREAM_KEEPALIVE_SECONDS: ${EVENT_STREAM_KEEPALIVE_SECONDS:-15}
+      CORS_ORIGINS: '["http://localhost:${FRONTEND_PORT:-5173}","http://127.0.0.1:${FRONTEND_PORT:-5173}"]'
+      AUTH_COOKIE_NAME: ${AUTH_COOKIE_NAME:-yujian_session}
+      AUTH_COOKIE_SAMESITE: ${AUTH_COOKIE_SAMESITE:-lax}
+      AUTH_SECURE_COOKIE: ${AUTH_SECURE_COOKIE:-false}
+      AUTH_SESSION_HOURS: ${AUTH_SESSION_HOURS:-12}
+      AUTH_REMEMBER_DAYS: ${AUTH_REMEMBER_DAYS:-30}
+      AUTH_PBKDF2_ITERATIONS: ${AUTH_PBKDF2_ITERATIONS:-310000}
+      AUTH_DEFAULT_TENANT_ID: ${AUTH_DEFAULT_TENANT_ID:-demo-tenant}
+      AUTH_SEED_ADMIN_USERNAME: ${AUTH_SEED_ADMIN_USERNAME:-admin}
+      AUTH_SEED_ADMIN_PASSWORD: ${AUTH_SEED_ADMIN_PASSWORD:-Yujian@2026}
+      AUTH_SEED_ADMIN_DISPLAY_NAME: ${AUTH_SEED_ADMIN_DISPLAY_NAME:-王海峰}
+      AUTH_SEED_ADMIN_ROLE: ${AUTH_SEED_ADMIN_ROLE:-防汛值班长}
+      PYTHONDONTWRITEBYTECODE: "1"
+      PYTHONUNBUFFERED: "1"
+      PIP_DISABLE_PIP_VERSION_CHECK: "1"
+    command:
+      - /bin/sh
+      - -c
+      - |
+        pip install --no-cache-dir -r requirements.txt &&
+        python -m uvicorn app.main:app --host 0.0.0.0 --port 8000
+    ports:
+      - "${BACKEND_PORT:-8000}:8000"
+    depends_on:
+      postgres:
+        condition: service_healthy
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/api/v1/health', timeout=2)"
+      interval: 5s
+      timeout: 5s
+      retries: 30
+      start_period: 90s
+    restart: unless-stopped
+
+  frontend:
+    image: node:22-alpine
+    working_dir: /workspace
+    volumes:
+      - ./:/workspace
+      - frontend_node_modules:/workspace/node_modules
+    environment:
+      VITE_API_BASE_URL: http://127.0.0.1:${BACKEND_PORT:-8000}/api/v1
+    command:
+      - /bin/sh
+      - -c
+      - |
+        npm ci --cache /tmp/npm-cache &&
+        npm run dev -- --host 0.0.0.0 --port 5173
+    ports:
+      - "${FRONTEND_PORT:-5173}:5173"
+    depends_on:
+      backend:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:5173').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+  frontend_node_modules:

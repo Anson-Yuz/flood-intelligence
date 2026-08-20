@@ -1,0 +1,25 @@
+{
+  "schemaVersion": "yujian.edge.event/v1",
+  "eventId": "1ab7b40c-5ed2-4da5-b85f-d892bea30727",
+  "eventType": "edge.heartbeat.v1",
+  "occurredAt": "2026-07-10T08:30:00.000Z",
+  "producedAt": "2026-07-10T08:30:00.012Z",
+  "sequence": 1042,
+  "traceId": "f025e44b-b773-4372-a0c8-b90268f9e103",
+  "source": {"tenantId": "demo-city", "edgeNodeId": "edge-ubuntu-001"},
+  "subject": {"siteId": "underpass-001", "stationId": "station-001", "pointId": "low-point-a"},
+  "quality": {"status": "good", "confidence": 1.0, "reasons": []},
+  "context": {"configVersion": "pilot-2026-07-10", "demVersion": "dem-20260710-001"},
+  "payload": {
+    "status": "online",
+    "mode": "rain_monitor",
+    "uptimeSeconds": 86412.2,
+    "software": {"name": "yujian-edge", "version": "0.1.0", "python": "3.12.4", "os": "Linux"},
+    "outbox": {"sqlitePath": "/var/lib/yujian-edge/outbox.db", "pending": 0, "maxAttempts": 0, "nextAttemptAtEpoch": null},
+    "adapters": {
+      "lidar": {"status": "online", "vendor": "Leishen", "model": null, "adapter": "SiteLeishenAdapter", "adapterVersion": "site-v1", "details": {"sdkConnected": true}},
+      "camera": {"status": "online", "vendor": "generic-uvc", "model": null, "adapter": "SiteCameraAdapter", "adapterVersion": "site-v1", "details": {"captureConnected": true}}
+    },
+    "clock": {"utc": "2026-07-10T08:30:00.000Z", "synchronized": true}
+  }
+}

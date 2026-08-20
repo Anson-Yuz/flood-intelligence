@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "yujian.edge.event/v1",
+  "eventId": "4edb9a09-6afb-444d-9a17-ce51e9841219",
+  "eventType": "road.dem.metadata.v1",
+  "occurredAt": "2026-07-10T08:00:00.000Z",
+  "producedAt": "2026-07-10T08:00:00.100Z",
+  "sequence": 1038,
+  "traceId": "f56d03ec-c9c9-4142-91f2-a3fa677b4613",
+  "source": {"tenantId": "demo-city", "edgeNodeId": "edge-ubuntu-001"},
+  "subject": {"siteId": "underpass-001", "stationId": "station-001", "pointId": "low-point-a"},
+  "quality": {"status": "good", "confidence": 0.99, "reasons": []},
+  "context": {
+    "configVersion": "pilot-2026-07-10",
+    "adapter": "SiteLeishenAdapter",
+    "adapterVersion": "site-v1",
+    "calibrationVersion": "lidar-cal-20260701",
+    "mock": false
+  },
+  "payload": {
+    "demVersion": "dem-20260710-001",
+    "capturedAt": "2026-07-10T08:00:00.000Z",
+    "coverageM2": 750.0,
+    "grid": {"cellSizeM": 0.1, "rows": 274, "columns": 274},
+    "verticalDatum": "local_site_datum",
+    "elevationErrorCm": 2.0,
+    "calibrationVersion": "lidar-cal-20260701",
+    "storageRef": "s3://edge-dem/underpass-001/dem-20260710-001.tiff",
+    "sha256": "222a5710eaa32f2d46903c1969a4b46cf53dd733c071523670ce9f6cead5d7b8"
+  }
+}

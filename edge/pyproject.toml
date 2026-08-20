@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "yujian-edge"
+version = "0.1.0"
+description = "Vendor-neutral edge collector and durable outbox for the Yujian platform"
+requires-python = ">=3.10"
+dependencies = []
+
+[project.optional-dependencies]
+mqtt = ["paho-mqtt>=1.6,<3"]
+
+[project.scripts]
+yujian-edge = "yujian_edge.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["yujian_edge*"]

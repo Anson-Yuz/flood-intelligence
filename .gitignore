@@ -1,0 +1,59 @@
+# JavaScript
+node_modules/
+dist/
+.vite/
+.npm-cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.venv/
+venv/
+server/.venv/
+edge/.venv/
+
+# Runtime data
+*.db
+*.db-shm
+*.db-wal
+*.sqlite
+*.sqlite3
+server/logs/
+edge/data/
+.demo/
+logs/
+
+# Local configuration and credentials
+.env
+.env.*
+!.env.example
+server/.env
+edge/.env
+*.pem
+*.key
+
+# Editors and operating systems
+.idea/
+.vscode/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Local reports and generated artifacts
+coverage/
+reports/
+output/
+.playwright-cli/
+*.log
+*.pid

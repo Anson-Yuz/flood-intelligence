@@ -1,0 +1,59 @@
+name: AI 协作任务
+description: 为 Codex、Claude 或 OpenClaw 创建范围清晰的任务
+title: "[AI-TASK] "
+labels: ["ai-task"]
+body:
+  - type: dropdown
+    id: agent
+    attributes:
+      label: 执行角色
+      options:
+        - Codex
+        - Claude
+        - OpenClaw
+        - 多角色协作
+    validations:
+      required: true
+  - type: textarea
+    id: background
+    attributes:
+      label: 背景与目标
+    validations:
+      required: true
+  - type: textarea
+    id: in_scope
+    attributes:
+      label: 范围内
+    validations:
+      required: true
+  - type: textarea
+    id: out_scope
+    attributes:
+      label: 范围外
+    validations:
+      required: true
+  - type: textarea
+    id: paths
+    attributes:
+      label: 允许修改的路径
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+    validations:
+      required: true
+  - type: textarea
+    id: tests
+    attributes:
+      label: 验证方式
+    validations:
+      required: true
+  - type: textarea
+    id: handoff
+    attributes:
+      label: 账本与交接要求
+      value: 开工前阅读 PROJECT_LEDGER.md；结束时更新改动、测试、未完成项和下一步。
+    validations:
+      required: true

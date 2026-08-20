@@ -1,0 +1,66 @@
+{
+  "configVersion": "pilot-2026-07-10",
+  "identity": {
+    "tenantId": "demo-city",
+    "siteId": "underpass-001",
+    "stationId": "station-001",
+    "pointId": "low-point-a",
+    "edgeNodeId": "edge-ubuntu-001"
+  },
+  "transport": {
+    "mode": "stdout",
+    "http": {
+      "endpoint": "http://127.0.0.1:8080/api/v1/edge/events",
+      "timeoutSeconds": 5,
+      "headers": {},
+      "bearerTokenEnv": "YUJIAN_EDGE_TOKEN"
+    },
+    "mqtt": {
+      "host": "127.0.0.1",
+      "port": 1883,
+      "clientId": "edge-ubuntu-001",
+      "keepaliveSeconds": 60,
+      "qos": 1,
+      "tls": false,
+      "usernameEnv": "YUJIAN_MQTT_USERNAME",
+      "passwordEnv": "YUJIAN_MQTT_PASSWORD"
+    }
+  },
+  "queue": {
+    "sqlitePath": "./data/outbox.db",
+    "batchSize": 50,
+    "retryBaseSeconds": 2,
+    "retryMaxSeconds": 300
+  },
+  "runtime": {
+    "mode": "rain_monitor",
+    "heartbeatIntervalSeconds": 30,
+    "observationIntervalSeconds": 5,
+    "demIntervalSeconds": 3600,
+    "flushIntervalSeconds": 2,
+    "logLevel": "INFO"
+  },
+  "adapters": {
+    "lidar": {
+      "driver": "mock",
+      "classPath": null,
+      "options": {
+        "vendor": "Leishen",
+        "model": null,
+        "coverageM2": 750,
+        "cellSizeM": 0.1
+      }
+    },
+    "camera": {
+      "driver": "mock",
+      "classPath": null,
+      "options": {
+        "vendor": "generic-uvc",
+        "model": null,
+        "width": 1920,
+        "height": 1080,
+        "fps": 30
+      }
+    }
+  }
+}

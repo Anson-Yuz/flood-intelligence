@@ -1,0 +1,36 @@
+name: 优化要求
+description: 记录新增优化或范围变化
+title: "[OPT] "
+labels: ["optimization"]
+body:
+  - type: textarea
+    id: request
+    attributes:
+      label: 原始要求
+    validations:
+      required: true
+  - type: dropdown
+    id: priority
+    attributes:
+      label: 优先级
+      options: [P0, P1, P2, P3]
+    validations:
+      required: true
+  - type: textarea
+    id: impact
+    attributes:
+      label: 影响范围
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: 验收标准
+    validations:
+      required: true
+  - type: textarea
+    id: ledger
+    attributes:
+      label: PROJECT_LEDGER.md 中的 OPT 编号
+    validations:
+      required: true

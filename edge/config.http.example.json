@@ -1,0 +1,37 @@
+{
+  "configVersion": "pilot-http-v1",
+  "identity": {
+    "tenantId": "demo-city",
+    "siteId": "underpass-001",
+    "stationId": "station-001",
+    "pointId": "low-point-a",
+    "edgeNodeId": "edge-ubuntu-001"
+  },
+  "transport": {
+    "mode": "http",
+    "http": {
+      "endpoint": "http://127.0.0.1:8080/api/v1/edge/events",
+      "timeoutSeconds": 5,
+      "headers": {},
+      "bearerTokenEnv": "YUJIAN_EDGE_TOKEN"
+    }
+  },
+  "queue": {
+    "sqlitePath": "./data/http-outbox.db",
+    "batchSize": 50,
+    "retryBaseSeconds": 2,
+    "retryMaxSeconds": 300
+  },
+  "runtime": {
+    "mode": "rain_monitor",
+    "heartbeatIntervalSeconds": 30,
+    "observationIntervalSeconds": 5,
+    "demIntervalSeconds": 3600,
+    "flushIntervalSeconds": 2,
+    "logLevel": "INFO"
+  },
+  "adapters": {
+    "lidar": {"driver": "mock", "classPath": null, "options": {"vendor": "Leishen", "model": null}},
+    "camera": {"driver": "mock", "classPath": null, "options": {"vendor": "generic-uvc", "model": null}}
+  }
+}

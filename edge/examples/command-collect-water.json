@@ -1,0 +1,15 @@
+{
+  "schemaVersion": "yujian.edge.command/v1",
+  "commandId": "85f621a1-0506-40ad-8ee4-411f22460dd6",
+  "commandType": "edge.collect.water.v1",
+  "issuedAt": "2026-07-10T08:35:00.000Z",
+  "expiresAt": "2030-07-10T08:40:00.000Z",
+  "traceId": "7f0a617e-6844-4c95-a035-a31de6bd0957",
+  "target": {
+    "siteId": "underpass-001",
+    "stationId": "station-001",
+    "edgeNodeId": "edge-ubuntu-001"
+  },
+  "requestedBy": {"type": "service", "id": "platform-operator-api"},
+  "parameters": {}
+}

@@ -1,0 +1,22 @@
+[Unit]
+Description=Yujian edge collector
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+Type=simple
+User=yujian-edge
+Group=yujian-edge
+WorkingDirectory=/opt/yujian-edge
+ExecStart=/opt/yujian-edge/.venv/bin/yujian-edge --config /etc/yujian-edge/config.json run
+Restart=always
+RestartSec=5
+StateDirectory=yujian-edge
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=strict
+ProtectHome=true
+ReadWritePaths=/var/lib/yujian-edge
+
+[Install]
+WantedBy=multi-user.target

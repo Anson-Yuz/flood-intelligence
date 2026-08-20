@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "yujian.edge.event/v1",
+  "eventId": "db96e122-f1cd-4483-aa4f-cb32a21a7996",
+  "eventType": "water.state.v1",
+  "occurredAt": "2026-07-10T08:30:05.000Z",
+  "producedAt": "2026-07-10T08:30:05.020Z",
+  "sequence": 1043,
+  "traceId": "ce0c23fd-7a61-4be8-8288-82a73b69dfcb",
+  "source": {"tenantId": "demo-city", "edgeNodeId": "edge-ubuntu-001"},
+  "subject": {"siteId": "underpass-001", "stationId": "station-001", "pointId": "low-point-a"},
+  "quality": {"status": "good", "confidence": 0.91, "reasons": []},
+  "context": {
+    "configVersion": "pilot-2026-07-10",
+    "adapter": "SiteCameraAdapter",
+    "adapterVersion": "site-v1",
+    "cameraCalibrationVersion": "camera-cal-20260701",
+    "demVersion": "dem-20260710-001",
+    "mock": false
+  },
+  "payload": {
+    "state": "rising",
+    "averageDepthCm": 12.6,
+    "maxDepthCm": 18.4,
+    "areaM2": 106.5,
+    "volumeM3": 7.38,
+    "riseRateCmPerMin": 1.4,
+    "demVersion": "dem-20260710-001",
+    "observationWindowSeconds": 5
+  }
+}

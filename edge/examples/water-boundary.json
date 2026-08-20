@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "yujian.edge.event/v1",
+  "eventId": "f8ffac74-43cc-46aa-bbf8-d97301f7bde8",
+  "eventType": "water.boundary.v1",
+  "occurredAt": "2026-07-10T08:30:05.000Z",
+  "producedAt": "2026-07-10T08:30:05.024Z",
+  "sequence": 1044,
+  "traceId": "ce0c23fd-7a61-4be8-8288-82a73b69dfcb",
+  "source": {"tenantId": "demo-city", "edgeNodeId": "edge-ubuntu-001"},
+  "subject": {"siteId": "underpass-001", "stationId": "station-001", "pointId": "low-point-a"},
+  "quality": {"status": "good", "confidence": 0.91, "reasons": []},
+  "context": {
+    "configVersion": "pilot-2026-07-10",
+    "adapter": "SiteCameraAdapter",
+    "adapterVersion": "site-v1",
+    "cameraCalibrationVersion": "camera-cal-20260701",
+    "demVersion": "dem-20260710-001",
+    "mock": false
+  },
+  "payload": {
+    "coordinateSystem": "image_pixel",
+    "image": {"width": 1920, "height": 1080},
+    "polygon": [
+      {"x": 405.0, "y": 800.0},
+      {"x": 752.5, "y": 565.0},
+      {"x": 1257.5, "y": 575.0},
+      {"x": 1615.0, "y": 830.0}
+    ],
+    "waterPixelRatio": 0.23,
+    "frameRef": "s3://edge-evidence/underpass-001/2026/07/10/frame-083005.jpg",
+    "cameraCalibrationVersion": "camera-cal-20260701",
+    "analysisMethod": "rain-reflection-candidate-v1",
+    "demVersion": "dem-20260710-001"
+  }
+}
